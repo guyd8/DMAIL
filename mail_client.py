@@ -3,9 +3,9 @@ __author__ = 'Guy Davidovich'
 from socket import *
 
 smtp_server_ip = '127.0.0.1'
-smtp_server_port = 30000
+smtp_server_port = 587
 imap_server_ip = '127.0.0.1'
-imap_server_port = 24000
+imap_server_port = 143
 
 
 def receive_messages():

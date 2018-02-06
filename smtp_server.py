@@ -2,9 +2,9 @@ __author__ = 'Guy Davidovich'
 
 from socket import *
 
-smtp_port = 30000
+smtp_port = 587
 imap_server_ip = '127.0.0.1'
-smtp_to_imap_port = 27000
+smtp_to_imap_port = 587
 
 
 def send_to_imap_server(message):

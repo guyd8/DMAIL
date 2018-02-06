@@ -5,9 +5,9 @@ from socket import *
 from threading import Thread
 import pickle
 
-smtp_to_imap_port = 27000
+smtp_to_imap_port = 587
 database_file_name = 'msgdb.pkl'
-imap_port = 24000
+imap_port = 143
 
 
 class Database(object):
