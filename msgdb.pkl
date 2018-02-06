@@ -1,0 +1,14 @@
+(dp0
+S'Omri'
+p1
+(lp2
+S'From: Guy\nTo: Omri\nTitle: sfsfsf\nContent: hello\n'
+p3
+aS'From: Guy\nTo: Omri\nTitle: hello\nContent: adsgsdfgsdgf\n'
+p4
+asS'mintz'
+p5
+(lp6
+S'From: sahar\nTo: mintz\nTitle: boom! bitch\nContent: well, ya\n'
+p7
+as.
