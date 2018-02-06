@@ -5,7 +5,7 @@ from socket import *
 from threading import Thread
 import pickle
 
-smtp_to_imap_port = 587
+smtp_port = 587
 database_file_name = 'msgdb.pkl'
 imap_port = 143
 
@@ -69,25 +69,25 @@ def upload_message_to_database(message):
     msg_db.add_message(receiver, message)
 
 
-def smtp_to_imap():
-    smtp_to_imap_server = socket()
-    smtp_to_imap_server.bind(('0.0.0.0', smtp_to_imap_port))
-    smtp_to_imap_server.listen(1)
+def smtp_server():
+    smtp_server = socket()
+    smtp_server.bind(('0.0.0.0', smtp_port))
+    smtp_server.listen(1)
     while True:
-        client_socket, address = smtp_to_imap_server.accept()
+        client_socket, address = smtp_server.accept()
         print 'connected to smtp server'
         message = client_socket.recv(1024)
         print message
         upload_message_to_database(message)
         client_socket.close()
-    smtp_to_imap_server.close()
+    smtp_server.close()
 
 
 def main():
-    smtp_server_communication = Thread(target=smtp_to_imap)
-    client_communication = Thread(target=imap_client)
-    smtp_server_communication.start()
-    client_communication.start()
+    smtp_communication = Thread(target=smtp_server)
+    imap_client_communication = Thread(target=imap_client)
+    smtp_communication.start()
+    imap_client_communication.start()
 
 
 if __name__ == '__main__':
