@@ -2,16 +2,15 @@ __author__ = 'Guy Davidovich'
 
 from socket import *
 
-smtp_server_ip = '127.0.0.1'
-smtp_server_port = 587
-imap_server_ip = '127.0.0.1'
-imap_server_port = 143
+smtp_port = 587
+server_ip = '127.0.0.1'
+imap_port = 143
 
 
 def receive_messages():
     username = raw_input('Enter your name\n')
     receiver_client = socket()
-    receiver_client.connect((imap_server_ip, imap_server_port))
+    receiver_client.connect((server_ip, imap_port))
     receiver_client.send(username)
     number_of_messages = int(receiver_client.recv(1024))
     for i in range(number_of_messages):
@@ -22,7 +21,7 @@ def receive_messages():
 
 def send_message(message):
     sender_client = socket()
-    sender_client.connect((smtp_server_ip, smtp_server_port))
+    sender_client.connect((server_ip, smtp_port))
     sender_client.send(message)
     sender_client.close()
 
