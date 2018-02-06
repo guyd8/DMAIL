@@ -21,7 +21,7 @@ def receive_messages():
 
 def send_message(message):
     sender_client = socket()
-    sender_client.connect((smtp_server_ip, smtp_server_port))
+    sender_client.connect((server_ip, smtp_port))
     sender_client.send(message)
     sender_client.close()
 
