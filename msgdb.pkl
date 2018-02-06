@@ -6,9 +6,11 @@ S'From: Guy\nTo: Omri\nTitle: sfsfsf\nContent: hello\n'
 p3
 aS'From: Guy\nTo: Omri\nTitle: hello\nContent: adsgsdfgsdgf\n'
 p4
-asS'mintz'
+aS'From: Guy\nTo: Omri\nTitle: adasd\nContent: hi\n'
 p5
-(lp6
+asS'mintz'
+p6
+(lp7
 S'From: sahar\nTo: mintz\nTitle: boom! bitch\nContent: well, ya\n'
-p7
+p8
 as.
