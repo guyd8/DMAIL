@@ -54,16 +54,16 @@ def send_messages(client_socket):
     print 'messages sent'
 
 
-def imap_client():
-    client_server = socket()
-    client_server.bind(('0.0.0.0', imap_port))
-    client_server.listen(1)
+def imap_server():
+    server = socket()
+    server.bind(('0.0.0.0', imap_port))
+    server.listen(1)
     while True:
-        client, address = client_server.accept()
+        client, address = server.accept()
         print 'connected to client'
         send_messages(client)
         client.close()
-    client_server.close()
+    server.close()
 
 
 def upload_message_to_database(message):
@@ -85,22 +85,22 @@ def smtp_communication(client):
 
 
 def smtp_server():
-    smtp_server = socket()
-    smtp_server.bind(('0.0.0.0', smtp_port))
-    smtp_server.listen(1)
+    server = socket()
+    server.bind(('0.0.0.0', smtp_port))
+    server.listen(1)
     while True:
-        client_socket, address = smtp_server.accept()
+        client_socket, address = server.accept()
         message = smtp_communication(client_socket)
         upload_message_to_database(message)
         client_socket.close()
-    smtp_server.close()
+    server.close()
 
 
 def main():
-    smtp_communication = Thread(target=smtp_server)
-    imap_client_communication = Thread(target=imap_client)
-    smtp_communication.start()
-    imap_client_communication.start()
+    receive_mail = Thread(target=smtp_server)
+    send_mail_to_clients = Thread(target=imap_server)
+    receive_mail.start()
+    send_mail_to_clients.start()
 
 
 if __name__ == '__main__':
