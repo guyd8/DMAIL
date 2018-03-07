@@ -6,6 +6,7 @@ from threading import Thread
 import pickle
 
 smtp_port = 587
+smtp_connect_code = '220'
 database_file_name = 'msgdb.pkl'
 imap_port = 143
 
@@ -69,15 +70,18 @@ def upload_message_to_database(message):
     msg_db.add_message(receiver, message)
 
 
+def smtp_communication(client):
+    client.send(smtp_connect_code + 'Connected to Dmail server')
+    
+
+
 def smtp_server():
     smtp_server = socket()
     smtp_server.bind(('0.0.0.0', smtp_port))
     smtp_server.listen(1)
     while True:
         client_socket, address = smtp_server.accept()
-        print 'connected to smtp server'
-        message = client_socket.recv(1024)
-        print message
+        message = smtp_communication(client_socket)
         upload_message_to_database(message)
         client_socket.close()
     smtp_server.close()
