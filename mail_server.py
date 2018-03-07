@@ -7,8 +7,9 @@ import pickle
 
 #smtp constants
 smtp_port = 587
+line_end = '\r\n'
 smtp_connect_code = 220
-smtp_connect_message = str(smtp_connect_code) + 'Connected to DMail server'
+smtp_connect_message = str(smtp_connect_code) + 'Connected to DMail server' + line_end
 
 database_file_name = 'msgdb.pkl'
 imap_port = 143
@@ -78,7 +79,9 @@ def smtp_communication(client):
     print smtp_connect_code
     client_command = client.recv(1024)
     print client_command
-    if client_command.startswith('EHLO') or client_command.startswith('HELO'):
+    if client_command.startswith('HELO'):
+        pass
+    elif client_command.startswith('EHLO'):
         pass
     else:
         pass
