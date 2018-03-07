@@ -5,8 +5,11 @@ from socket import *
 from threading import Thread
 import pickle
 
+#smtp constants
 smtp_port = 587
-smtp_connect_code = '220'
+smtp_connect_code = 220
+smtp_connect_message = str(smtp_connect_code) + 'Connected to DMail server'
+
 database_file_name = 'msgdb.pkl'
 imap_port = 143
 
@@ -71,8 +74,14 @@ def upload_message_to_database(message):
 
 
 def smtp_communication(client):
-    client.send(smtp_connect_code + 'Connected to Dmail server')
-    
+    client.send(smtp_connect_message)
+    print smtp_connect_code
+    client_command = client.recv(1024)
+    print client_command
+    if client_command.startswith('EHLO') or client_command.startswith('HELO'):
+        pass
+    else:
+        pass
 
 
 def smtp_server():
