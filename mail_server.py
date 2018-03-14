@@ -76,7 +76,7 @@ def upload_message_to_database(message):
 
 def smtp_communication(client):
     client.send(smtp_connect_message)
-    print smtp_connect_code
+    print smtp_connect_message
     client_command = client.recv(1024)
     print client_command
     if client_command.startswith('HELO'):
