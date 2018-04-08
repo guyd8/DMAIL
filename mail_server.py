@@ -76,10 +76,17 @@ def upload_message_to_database(message):
 
 
 def smtp_communication(client):
+    responses_of_the_server = []
+    commands_of_the_client = []
+
+    responses_of_the_server.append(smtp_connect_message)
     client.send(smtp_connect_message)
     print smtp_connect_message
+
     client_command = client.recv(1024)
     print client_command
+    commands_of_the_client.append(client_command)
+    
     if client_command.startswith('HELO') or client_command.startswith('EHLO'):
         client_host = client_command.split()[1]
         print 'client host ' + client_host

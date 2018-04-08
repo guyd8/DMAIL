@@ -23,7 +23,7 @@ def send_message(message):
     sender_socket = socket()
     sender_socket.connect((server_ip, smtp_port))
 
-    sender_socket.recv(1024)
+    server_response = sender_socket.recv(1024)
 
     sender_socket.close()
 
