@@ -86,19 +86,27 @@ def smtp_communication(client):
     client_command = client.recv(1024)
     print client_command
     commands_of_the_client.append(client_command)
-    
-    if client_command.startswith('HELO') or client_command.startswith('EHLO'):
+
+    com = client_command.split()[0].upper()
+
+    if com == 'HELO' or com == 'EHLO':
         client_host = client_command.split()[1]
         print 'client host ' + client_host
-        server_response = str(smtp_okay_code) + line_end
+
+        server_response = str(smtp_okay_code) + ' OK' + line_end
         print server_response
         client.send(server_response)
+        responses_of_the_server.append(server_response)
+
         client_command = client_command.recv(1024)
         print client_command
+        commands_of_the_client.append(client_command)
+
         if client_command.startswith('MAIL'):
             pass
         else:
             pass
+
     else:
         pass
 
